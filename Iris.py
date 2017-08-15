@@ -163,6 +163,24 @@ plt.scatter(df['petal width (cm)'], y=df['petal length (cm)'], c=colormap[KM_lab
 plt.xlabel('petal width (cm)')
 plt.ylabel('petal length (cm)')
 
+#Plotting the distribution of the vlaues for each feature
+plt.figure()
+plt.subplot(2,2,1)
+plt.hist(df['sepal length (cm)'],color = '#43E5C9')
+plt.title('sepal length (cm)')
+
+plt.subplot(2,2,2)
+plt.hist(df['sepal width (cm)'],color = '#43E5C9')
+plt.title('sepal width (cm)')
+
+plt.subplot(2,2,3)
+plt.hist(df['petal length (cm)'],color = '#43E5C9')
+plt.title('petal length (cm)')
+
+plt.subplot(2,2,4)
+plt.hist(df['petal width (cm)'],color = '#43E5C9')
+plt.title('petal width (cm)')
+
 plt.show()
 
 #It is worth mentioning that the labels might change colour/numeric value between
