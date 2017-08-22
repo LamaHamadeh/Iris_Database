@@ -260,11 +260,12 @@ print ('the intersection point with the y axis b = ' , fit_model.coef_)
 
 #plotting the data with the regression line
 plt.figure()
-plt.scatter(x=df["petal length (cm)"], y=df["petal width (cm)"],color = 'blue')
-plt.plot(X1, Reg_model.predict(X1), color='black', linewidth=3)
+plt.scatter(x=df["petal length (cm)"], y=df["petal width (cm)"],color = 'blue', label = 'Data Points')
+plt.plot(X1, Reg_model.predict(X1), color='black', linewidth=3, label = 'Regression Line' )
 plt.xlabel('sepal length (cm)')
 plt.ylabel('petal width (cm)')
 plt.title('Linear Regression')
+plt.legend(loc="best")
 plt.show()
 
 #-------------------------------------------------
