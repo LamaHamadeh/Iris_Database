@@ -15,7 +15,10 @@ from sklearn.cluster import KMeans
 from matplotlib.colors import ListedColormap
 from sklearn.cross_validation import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LinearRegression 
+
 #-------------------------------------------------
+print('Reading the Dataframe \n')
 
 #Read the dataframe
 iris = load_iris()
@@ -27,6 +30,7 @@ print(df.head())
 #-------------------------------------------------
 
 #================Apply Clustering / kmeans algorithm===========================
+print('KMeans Algorithm ... \n')
 
 #Apply KMeans algorithm
 kmeans_model = KMeans(n_clusters = 3, init = 'random', n_init = 60, max_iter = 400, random_state = 43)
@@ -37,7 +41,6 @@ OR_labels = df.target #these are the original labels provided by the dataset
 df['kMean predicted label'] = kmeans_model.labels_ #Here we add to the iris dataset a column that 
 #contains the KMeans prediction labels in order to compare between the target column and the kmean clustering perdication
 print (df.head())
-#-------------------------------------------------
 
 #Plotting and visulisation
 
@@ -194,6 +197,7 @@ plt.show()
 #-------------------------------------------------
 
 #================Apply Classification / knn algorithm==========================
+print('Knn Algorithm ... \n')
 
 X = iris.data[:, :2]  # we only take the first two features.
 y = iris.target
@@ -231,4 +235,36 @@ plt.ylabel('petal width (cm)')
 plt.title('K = 15')
 
 plt.show()
+#-------------------------------------------------
+
+#================Apply Classification / regression algorithm==========================
+print('Linear Regression Algorithm ... \n')
+
+#define two features from the original dataframe
+X1 = df[['petal length (cm)']]
+y1 = df[['petal width (cm)']]
+
+#apply linear regression algorithm
+X_train1, X_test1, y_train1, y_test1 = train_test_split(X1, y1, test_size = 0.3, random_state =7)
+Reg_model = LinearRegression()
+fit_model = Reg_model.fit(X_train1, y_train1)
+score1 = Reg_model.score(X_test1, y_test1)
+print('the score of the regression model is ', score1) #0.941869014915
+
+#print the coeffieicnt of the regression line
+print ('The regression line equation is : f(x) = ax+b,\n'
+       'where a is the slope of the line and b is the \n'
+       'intersction point with the y axis' )
+print ('the slope value of the regression line a = ' , fit_model.intercept_)
+print ('the intersection point with the y axis b = ' , fit_model.coef_)
+
+#plotting the data with the regression line
+plt.figure()
+plt.scatter(x=df["petal length (cm)"], y=df["petal width (cm)"],color = 'blue')
+plt.plot(X1, Reg_model.predict(X1), color='black', linewidth=3)
+plt.xlabel('sepal length (cm)')
+plt.ylabel('petal width (cm)')
+plt.title('Linear Regression')
+plt.show()
+
 #-------------------------------------------------
