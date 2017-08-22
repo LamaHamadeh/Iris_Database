@@ -259,6 +259,13 @@ print ('the slope value of the regression line a = ' , fit_model.intercept_)
 print ('the intersection point with the y axis b = ' , fit_model.coef_)
 
 #plotting the data with the regression line
+#Comparison between the original and predicted data 
+plt.figure()
+plt.plot(X1, color = 'b', label = 'Petal Length Data')
+plt.plot(Reg_model.predict(X1), color = 'r', label = 'Petal Length Predicated Data')
+plt.title ('The accuracy between the original and predicted data is 94%')
+plt.legend(loc = 'best')
+#plot the regression line
 plt.figure()
 plt.scatter(x=df["petal length (cm)"], y=df["petal width (cm)"],color = 'blue', label = 'Data Points')
 plt.plot(X1, Reg_model.predict(X1), color='black', linewidth=3, label = 'Regression Line' )
